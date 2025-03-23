@@ -1,4 +1,3 @@
-import React from 'react';
 import { ThumbsUp } from 'lucide-react';
 
 const likedVideos = [
@@ -24,6 +23,7 @@ const likedVideos = [
 
 function LikedVideos() {
   return (
+
     <div className="max-w-6xl mx-auto">
       <div className="flex items-center gap-3 mb-8">
         <ThumbsUp className="w-8 h-8" />
@@ -33,22 +33,18 @@ function LikedVideos() {
         </div>
       </div>
 
-      <div className="space-y-6">
+
+
+      <div className="">
         {likedVideos.map(video => (
+
           <div key={video.id} className="flex gap-4 hover:bg-[#272727] p-4 rounded-lg cursor-pointer">
-            <img
-              src={video.thumbnail}
-              alt={video.title}
-              className="w-48 h-28 object-cover rounded-lg"
-            />
+            <img src={video.thumbnail} alt={video.title} className="w-48 h-28 object-cover rounded-lg"/>
+
             <div>
               <h3 className="font-medium text-lg">{video.title}</h3>
               <div className="flex items-center gap-2 mt-2">
-                <img
-                  src={video.avatar}
-                  alt={video.channel}
-                  className="w-6 h-6 rounded-full"
-                />
+                <img src={video.avatar} alt={video.channel} className="w-6 h-6 rounded-full"/>
                 <p className="text-sm text-gray-400">{video.channel}</p>
               </div>
               <p className="text-sm text-gray-400 mt-1">

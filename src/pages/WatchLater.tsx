@@ -1,4 +1,3 @@
-import React from 'react';
 import { Clock, Trash2 } from 'lucide-react';
 
 const watchLaterVideos = [
@@ -39,7 +38,7 @@ function WatchLater() {
         </button>
       </div>
 
-      <div className="space-y-6">
+      <div className="">
         {watchLaterVideos.map(video => (
           <div key={video.id} className="flex gap-4 hover:bg-[#272727] p-4 rounded-lg cursor-pointer group">
             <div className="relative">

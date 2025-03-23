@@ -33,12 +33,11 @@ function Sidebar({ isMenuOpen }: SidebarProps) {
           <ThumbsUp className="w-6 h-6" />
           {isMenuOpen && <span>Liked Videos</span>}
         </Link>
-        {isMenuOpen && (
-          <button className="w-full flex items-center gap-4 px-3 py-2 hover:bg-[#272727] rounded-lg">
-            <ChevronDown className="w-6 h-6" />
-            <span>Show More</span>
-          </button>
-        )}
+
+
+
+
+
       </div>
     </aside>
   );
