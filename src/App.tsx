@@ -57,13 +57,13 @@ function App() {
           setIsMobileMenuOpen={setIsMobileMenuOpen}
         />
 
-        <div className="flex pt-14 relative">
+        <div className={`flex ${isMobile ? 'pt-16' : 'pt-14'} relative`}>
           {/* Sidebar Component - hidden on mobile unless mobile menu is open */}
           {(!isMobile && (
             <Sidebar isMenuOpen={isMenuOpen} />
           )) || (isMobile && isMobileMenuOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsMobileMenuOpen(false)}>
-              <div className="w-64 h-full bg-[#0f0f0f] pt-14" onClick={(e) => e.stopPropagation()}>
+              <div className="w-64 h-full bg-[#0f0f0f] pt-16" onClick={(e) => e.stopPropagation()}>
                 <Sidebar isMenuOpen={true} />
               </div>
             </div>
@@ -71,7 +71,7 @@ function App() {
 
           {/* Main Content Area */}
           <main 
-            className={`flex-1 p-4 md:p-6 ${
+            className={`flex-1 ${isMobile ? 'p-5' : 'p-4 md:p-6'} ${
               !isMobile && isMenuOpen ? 'md:ml-60' : !isMobile && !isMenuOpen ? 'md:ml-20' : ''
             }`}
           >
