@@ -8,6 +8,9 @@ import LibraryPage from './pages/Library';
 import HistoryPage from './pages/History';
 import WatchLater from './pages/WatchLater';
 import LikedVideos from './pages/LikedVideos';
+import ContactUs from './pages/ContactUse';
+import AboutUs from './pages/AboutUs';
+import Blog from './pages/Blog';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -71,7 +74,7 @@ function App() {
 
           {/* Main Content Area */}
           <main 
-            className={`flex-1 ${isMobile ? 'p-5' : 'p-4 md:p-6'} ${
+            className={`flex-1 ${isMobile ? 'p-2' : 'p-4 md:p-6'} ${
               !isMobile && isMenuOpen ? 'md:ml-60' : !isMobile && !isMenuOpen ? 'md:ml-20' : ''
             }`}
           >
@@ -82,6 +85,10 @@ function App() {
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/watch-later" element={<WatchLater />} />
               <Route path="/liked-videos" element={<LikedVideos />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/blog" element={<Blog />} />
+
             </Routes>
           </main>
         </div>
