@@ -2,8 +2,7 @@
 import SocialMediaButtons from '../components/SocialMediaButtons';
 
 function AboutUs() {
-  const member1Url = 'https://medium.com/@zainalabidin'; // Replace with actual URL for Zain
-  const member2Url = 'https://medium.com/@hamzaahmad6292'; // Replace with actual URL for Hamza
+
 
   return (
     <div className="max-w-6xl mx-auto p-6">

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Menu, Search, Bell, User, PlaySquare, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface NavbarProps {
   isMenuOpen: boolean;
@@ -13,6 +16,8 @@ interface NavbarProps {
 function Navbar({ isMenuOpen, toggleMenu, isMobile, isMobileMenuOpen, setIsMobileMenuOpen }: NavbarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -78,9 +83,17 @@ function Navbar({ isMenuOpen, toggleMenu, isMobile, isMobileMenuOpen, setIsMobil
           </button>
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-44 bg-[#222222] shadow-lg rounded-lg py-2 z-50">
-              <button className="block w-full text-left px-4 py-2.5 hover:bg-[#303030]" onClick={() => (window.location.href = "/settings")} >Settings</button>
+              <button className="block w-full text-left px-4 py-2.5 hover:bg-[#303030]" onClick={() => (window.location.href = "/settings")}>Settings</button>
               <button className="block w-full text-left px-4 py-2.5 hover:bg-[#303030]" onClick={() => (window.location.href = "/help")}>Help</button>
-              <button className="block w-full text-left px-4 py-2.5 hover:bg-[#303030]" onClick={() => (window.location.href = "/signout")}>Sign Out</button>
+              <button
+                className="block w-full text-left px-4 py-2.5 hover:bg-[#303030]"
+                onClick={() => {
+                  dispatch(logout());
+                  navigate('/auth');
+                }}
+              >
+                Sign Out
+              </button>
             </div>
           )}
         </div>
