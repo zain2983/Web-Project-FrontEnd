@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import HomePage from './pages/Home';
@@ -107,6 +107,8 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/blog" element={<Blog />} />
           </Route>
+          {/* Redirect for unmatched routes */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>
     </Router>

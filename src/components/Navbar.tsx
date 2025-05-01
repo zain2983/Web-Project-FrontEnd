@@ -11,16 +11,18 @@ interface NavbarProps {
   isMobile: boolean;
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (isOpen: boolean) => void;
+  onSearch: (query: string) => void;
 }
 
-function Navbar({ isMenuOpen, toggleMenu, isMobile, isMobileMenuOpen, setIsMobileMenuOpen }: NavbarProps) {
+function Navbar({ isMenuOpen, toggleMenu, isMobile, isMobileMenuOpen, setIsMobileMenuOpen, onSearch }: NavbarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Close dropdown when clicking outside
-  useEffect(() => {
+  useEffect(() => { 
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
@@ -32,6 +34,12 @@ function Navbar({ isMenuOpen, toggleMenu, isMobile, isMobileMenuOpen, setIsMobil
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onSearch(searchQuery);
+    }
+  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 bg-[#0f0f0f] ${isMobile ? 'h-16' : 'h-14'} flex items-center justify-between px-3 md:px-4 z-50`}>
@@ -60,6 +68,9 @@ function Navbar({ isMenuOpen, toggleMenu, isMobile, isMobileMenuOpen, setIsMobil
           <input
             type="text"
             placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleSearch}
             className={`w-full ${isMobile ? 'px-3 py-1.5' : 'px-2 md:px-4 py-1 md:py-2'} bg-[#121212] border border-[#303030] rounded-l-full focus:outline-none focus:border-blue-500`}
           />
           <button className={`${isMobile ? 'px-4' : 'px-3 md:px-6'} bg-[#222222] border border-l-0 border-[#303030] rounded-r-full hover:bg-[#272727]`}>
